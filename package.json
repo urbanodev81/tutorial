@@ -1,0 +1,29 @@
+{
+    "name": "@urbanodev/tutorial",
+    "version": "0.1.0",
+    "description": "Tutorial por tela (holofote + balão) dos sistemas da Urbano Dev. Implementa kit-desenvolvimento/modulos/tutorial.",
+    "license": "UNLICENSED",
+    "private": true,
+    "type": "module",
+    "main": "src/index.js",
+    "exports": {
+        ".": "./src/index.js"
+    },
+    "files": ["src", "bin"],
+    "bin": {
+        "tutorial-conferir": "bin/conferir-alvos.mjs"
+    },
+    "scripts": {
+        "test": "vitest run"
+    },
+    "peerDependencies": {
+        "vue": "^3.4.0"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "6.0.1",
+        "@vue/test-utils": "2.4.6",
+        "happy-dom": "18.0.1",
+        "vitest": "3.2.4",
+        "vue": "3.5.18"
+    }
+}
