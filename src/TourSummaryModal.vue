@@ -87,8 +87,9 @@ onBeforeUnmount(() => window.removeEventListener('keydown', aoTeclar));
     border-radius: 9999px;
     background: var(--success-subtle, #dcfce7); color: var(--success, #166534);
 }
-.tt-titulo--grande { font-size: 20px; margin-bottom: 4px; }
-.tt-espaco { margin-bottom: 16px; }
+.tt-titulo.tt-titulo--grande { font-size: 20px; margin-bottom: 4px; }
+/* Dois seletores: o `.tt-texto { margin: 0 }` do balão pode vir depois no CSS. */
+.tt-texto.tt-espaco { margin-bottom: 16px; }
 .tt-lista { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 6px; }
 .tt-lista li { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: var(--fg, #111827); }
 .tt-lista svg { flex-shrink: 0; margin-top: 2px; color: var(--success, #166534); }

@@ -18,3 +18,4 @@
 ### Corrigido
 - O holofote do passo anterior ficava até ~1s no alvo errado enquanto o
   passo novo procurava o dele (defeito herdado das três cópias).
+- Espaço sob "O que você viu" no resumo, anulado pela ordem do CSS.

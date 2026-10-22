@@ -1,6 +1,6 @@
 {
     "name": "@urbanodev/tutorial",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Tutorial por tela (holofote + balão) dos sistemas da Urbano Dev. Implementa kit-desenvolvimento/modulos/tutorial.",
     "license": "UNLICENSED",
     "private": true,
