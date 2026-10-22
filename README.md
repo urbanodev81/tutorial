@@ -35,6 +35,12 @@ com as três cópias.
 "@urbanodev/tutorial": "github:urbanodev81/tutorial#v0.1.3"
 ```
 
+Repositório **privado**: o lock aponta `git+ssh`. No CI, um passo antes do
+`npm ci` troca por https com o secret `PACOTES_TOKEN`; no Dockerfile, `git` no
+estágio de assets e o token por secret do BuildKit, só dentro do `RUN` (molde
+no Sócrates: `docker/production/Dockerfile`, `docs/SETUP.md` §9). Token
+fine-grained, só leitura, só dos pacotes.
+
 O pacote vai como fonte (`.vue`), então o Vite não pode pré-empacotá-lo:
 
 ```js
