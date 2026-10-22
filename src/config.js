@@ -21,7 +21,7 @@ export const config = reactive({
     // Inertia, `(f) => router.on('finish', f)`.
     aoNavegar: null,
     // { superficieAberta, reivindicar, liberar } — o `useSuperficieExclusiva`
-    // do projeto (CORE §10). Sem ele, o tour só não fecha quando outra
+    // do projeto: uma superfície flutuante aberta por vez. Sem ele, o tour só não fecha quando outra
     // superfície abre.
     superficie: null,
     // 'aprender': abre sozinho uma vez e fala como orientação.
@@ -32,8 +32,8 @@ export const config = reactive({
     // #fff`) ou 'canais' (`--surface: 255 255 255`, o do Tailwind com
     // `rgb(var(--x) / <alpha-value>)`). Errar aqui deixa o balão sem fundo.
     cores: 'inteira',
-    // A régua de z-index é do projeto (CORE §10): acima da gaveta, abaixo do
-    // toast e da confirmação.
+    // A régua de z-index é do projeto: o tutorial fica acima da gaveta
+    // lateral e abaixo do toast e da confirmação.
     zIndex: 100,
     // () => void — mostra "Ver todos os tutoriais" no resumo. Sem ela, o botão
     // não aparece: botão para lugar nenhum é pior que botão nenhum.

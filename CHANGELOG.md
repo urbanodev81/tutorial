@@ -3,6 +3,9 @@
 ## [Não lançado]
 
 ### Adicionado
+- Repositório público, sob licença MIT (0.2.1): README para quem chega de
+  fora, demonstração no GitHub Pages (`demo/`, `npm run demo`) e testes no CI
+  a cada push.
 - `cores: 'canais'` (0.2.0): para projeto que declara as variáveis de tema
   em canais do Tailwind (`--surface: 255 255 255`). O formato se resolve num
   lugar só, em variáveis `--tt-*` na camada do tutorial.
@@ -21,6 +24,9 @@
   (`` `menu-${chave}` ``), confere pelo prefixo e diz quais.
 
 ### Corrigido
+- Com fonte larga (a do sistema), "Pular", "Anterior" e "Próximo" passavam
+  da largura do balão: o "Próximo" vazava e o balão rolava de lado. O rodapé
+  agora quebra a linha (0.2.1).
 - O holofote do passo anterior ficava até ~1s no alvo errado enquanto o
   passo novo procurava o dele (defeito herdado das três cópias).
 - Espaço sob "O que você viu" no resumo, anulado pela ordem do CSS.

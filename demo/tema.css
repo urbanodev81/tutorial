@@ -1,0 +1,78 @@
+/*
+ * O tema do "sistema" da demonstração. O pacote não escreve cor: lê estas
+ * variáveis. Trocar a classe `.dark` no <html> troca o tutorial junto.
+ */
+:root {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface-sunken: #eef0f3;
+    --fg: #111827;
+    --fg-muted: #4b5563;
+    --fg-subtle: #6b7280;
+    --fg-on-accent: #ffffff;
+    --border: #e5e7eb;
+    --border-input: #6b7280;
+    --accent: #2453d6;
+    --accent-hover: #1b40a8;
+    --accent-ring: #2453d6;
+    --overlay: rgb(17 24 39 / 0.55);
+    --success: #166534;
+    --success-subtle: #dcfce7;
+    --warning: #92400e;
+    --danger: #b91c1c;
+
+    color-scheme: light;
+}
+
+.dark {
+    --bg: #0b0f17;
+    --surface: #151b26;
+    --surface-sunken: #0b0f17;
+    --fg: #f3f4f6;
+    --fg-muted: #a3acb9;
+    --fg-subtle: #a3acb9;
+    --fg-on-accent: #0b0f17;
+    --border: #252d3a;
+    --border-input: #6b7280;
+    --accent: #7c9cff;
+    --accent-hover: #a5bbff;
+    --accent-ring: #7c9cff;
+    --overlay: rgb(0 0 0 / 0.7);
+    --success: #4ade80;
+    --success-subtle: #052e16;
+    --warning: #fbbf24;
+    --danger: #f87171;
+
+    color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--fg);
+    font: 15px/1.5 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent-ring);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

@@ -1,20 +1,44 @@
 {
     "name": "@urbanodev/tutorial",
-    "version": "0.2.0",
-    "description": "Tutorial por tela (holofote + balão) dos sistemas da Urbano Dev. Implementa kit-desenvolvimento/modulos/tutorial.",
-    "license": "UNLICENSED",
-    "private": true,
+    "version": "0.2.1",
+    "description": "Tutorial por tela para Vue 3: holofote sobre o elemento, balão com o texto, modos aprender e auxiliar, cor só por variável de tema.",
+    "license": "MIT",
+    "author": "Ricardo Urbano <ricardo@urbanodev.com.br> (https://urbanodev.com.br)",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urbanodev81/tutorial.git"
+    },
+    "homepage": "https://urbanodev81.github.io/tutorial/",
+    "bugs": {
+        "url": "https://github.com/urbanodev81/tutorial/issues"
+    },
+    "keywords": [
+        "vue",
+        "vue3",
+        "tutorial",
+        "tour",
+        "onboarding",
+        "product-tour",
+        "spotlight",
+        "acessibilidade",
+        "a11y"
+    ],
     "type": "module",
     "main": "src/index.js",
     "exports": {
         ".": "./src/index.js"
     },
-    "files": ["src", "bin"],
+    "files": [
+        "src",
+        "bin"
+    ],
     "bin": {
         "tutorial-conferir": "bin/conferir-alvos.mjs"
     },
     "scripts": {
-        "test": "vitest run"
+        "test": "vitest run",
+        "demo": "vite --config vite.demo.config.js",
+        "demo:build": "vite build --config vite.demo.config.js"
     },
     "peerDependencies": {
         "vue": "^3.4.0"
@@ -23,6 +47,7 @@
         "@vitejs/plugin-vue": "6.0.1",
         "@vue/test-utils": "2.4.6",
         "happy-dom": "18.0.1",
+        "vite": "7.3.7",
         "vitest": "3.2.4",
         "vue": "3.5.18"
     }

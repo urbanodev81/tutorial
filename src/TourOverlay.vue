@@ -10,13 +10,13 @@ import TourSummaryModal from './TourSummaryModal.vue';
  * espaço.
  *
  * O que as três cópias foram aprendendo e vem junto: Esc, foco no balão e
- * `aria-modal` (CORE §10); alvo invisível conta como ausente (vale o primeiro
+ * `aria-modal`, como toda superfície flutuante da casa; alvo invisível conta como ausente (vale o primeiro
  * `data-tour` VISÍVEL — o menu lateral no celular existe no DOM, fora da tela);
  * rola até o alvo abaixo da dobra; sair pelo véu confirma dentro do próprio
  * balão, em vez de empilhar outra confirmação por cima; anel e véu numa sombra
  * só, por token.
  *
- * COR SÓ POR VARIÁVEL DE TEMA (CORE §1): o pacote não escreve tinta nenhuma.
+ * COR SÓ POR VARIÁVEL DE TEMA: o pacote não escreve tinta nenhuma.
  * O projeto declara `--surface`, `--fg`, `--accent`… e o tema escuro vem de
  * graça, porque as variáveis mudam com a classe `.dark`.
  *
@@ -439,12 +439,15 @@ function verTodos() {
 .tt-texto { margin: 0; font-size: 14px; line-height: 1.6; color: var(--tt-fg-muted); }
 .tt-rodape {
     position: sticky; bottom: -20px;
-    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;
     margin: 16px -20px -20px; padding: 8px 20px 20px;
     background: var(--tt-surface);
 }
 .tt-rodape--fim { justify-content: flex-end; }
-.tt-grupo { display: flex; align-items: center; gap: 8px; }
+/* Com fonte larga (a do sistema, sem a do projeto), "Pular" + "Anterior" +
+   "Próximo" passam dos 20rem: o rodapé quebra a linha e o grupo fica à
+   direita, em vez de vazar e fazer o balão rolar de lado. */
+.tt-grupo { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 .tt-botao {
     min-height: 44px; padding: 0 12px; border-radius: 6px;
     font: inherit; font-size: 14px; font-weight: 600; white-space: nowrap;
@@ -455,8 +458,8 @@ function verTodos() {
 .tt-botao--leve:hover { color: var(--tt-fg); }
 .tt-botao--borda { border-color: var(--tt-border-input); color: var(--tt-fg); }
 .tt-botao--borda:hover { background: var(--tt-surface-sunken); }
-/* A primária é da marca OU neutro-escuro, conforme o arquivo de marca
-   (CORE §6): o Sócrates aponta `--tutorial-primaria` para o neutro. */
+/* A primária é da marca OU neutro-escuro, conforme a identidade de cada
+   produto: o Sócrates aponta `--tutorial-primaria` para o neutro. */
 .tt-botao--primario {
     padding: 0 16px;
     background: var(--tutorial-primaria, var(--tt-accent));
