@@ -180,6 +180,10 @@ watch(() => [state.active, state.stepIndex], ([ativo]) => {
     }
 
     config.superficie?.reivindicar('tour');
+    // O holofote do passo anterior não pode ficar parado no alvo errado
+    // enquanto este procura o dele (até ~1s, se o alvo demora ou não existe).
+    // A medição roda antes da pintura: com alvo presente, não pisca.
+    rect.found = false;
     nextTick(() => {
         remeasure(true);
         // Leitor de tela e teclado acompanham o passo: o foco vai para o

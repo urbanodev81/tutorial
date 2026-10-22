@@ -14,3 +14,7 @@
 - Chave de "visto", z-index, textos da interface e "Ver todos os tutoriais"
   por configuração.
 - `tutorial-conferir`: acusa passo apontando para `data-tour` que não existe.
+
+### Corrigido
+- O holofote do passo anterior ficava até ~1s no alvo errado enquanto o
+  passo novo procurava o dele (defeito herdado das três cópias).

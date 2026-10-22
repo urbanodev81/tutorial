@@ -151,4 +151,21 @@ describe('balão', () => {
         await nextTick();
         expect(useTour().state.active).toBe(true);
     });
+
+    it('passo de alvo ausente não deixa o holofote no alvo anterior', async () => {
+        configurarTutorial({ passos: { inicio: [
+            { selector: '[data-tour="menu"]', title: 'Menu', text: '' },
+            { selector: '[data-tour="sumiu"]', title: 'Sumiu', text: '' },
+        ] } });
+        document.querySelector('nav').getBoundingClientRect = () => ({ top: 10, left: 10, width: 100, height: 40, right: 110, bottom: 50 });
+        mount(TourOverlay, { attachTo: document.body });
+        const tour = useTour();
+        tour.start('inicio');
+        await new Promise((r) => setTimeout(r, 0));
+        expect(document.querySelector('[data-tutorial="holofote"]')).not.toBeNull();
+        tour.next();
+        await new Promise((r) => setTimeout(r, 0));
+        expect(document.querySelector('[data-tutorial="holofote"]')).toBeNull();
+        configurarTutorial({ passos: PASSOS });
+    });
 });
