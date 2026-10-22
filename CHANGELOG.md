@@ -3,6 +3,9 @@
 ## [Não lançado]
 
 ### Adicionado
+- `cores: 'canais'` (0.2.0): para projeto que declara as variáveis de tema
+  em canais do Tailwind (`--surface: 255 255 255`). O formato se resolve num
+  lugar só, em variáveis `--tt-*` na camada do tutorial.
 - O tutorial por tela como pacote (22/10/2026), a partir da cópia do USI:
   `useTour`, `TourOverlay` e `TourSummaryModal`, com Esc, foco no balão, alvo
   visível, rolagem até o alvo, saída pelo véu confirmada dentro do balão e

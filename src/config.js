@@ -28,6 +28,10 @@ export const config = reactive({
     // 'auxiliar': só pelo botão de ajuda, e o texto de cada passo pode mudar.
     // Pode ser uma função, para quem decide por usuário (a avaliação do USI).
     modo: 'aprender',
+    // O formato das variáveis de tema do projeto: 'inteira' (`--surface:
+    // #fff`) ou 'canais' (`--surface: 255 255 255`, o do Tailwind com
+    // `rgb(var(--x) / <alpha-value>)`). Errar aqui deixa o balão sem fundo.
+    cores: 'inteira',
     // A régua de z-index é do projeto (CORE §10): acima da gaveta, abaixo do
     // toast e da confirmação.
     zIndex: 100,

@@ -280,7 +280,7 @@ function verTodos() {
 
 <template>
     <Teleport to="body">
-        <div v-if="state.active && currentStep" class="tt-camada" :style="{ zIndex: config.zIndex }">
+        <div v-if="state.active && currentStep" class="tt-camada" :class="{ 'tt-canais': config.cores === 'canais' }" :style="{ zIndex: config.zIndex }">
             <div
                 class="tt-fundo"
                 :class="{ 'tt-fundo--veu': !rect.found }"
@@ -353,18 +353,55 @@ function verTodos() {
 
 <style>
 /* Sem `scoped`: o Teleport leva o balão para o <body>, e o prefixo `tt-` já
-   isola. Só variável de tema aqui — o valor depois da vírgula é a rede de
+   isola.
+
+   As cores chegam do tema do projeto em um de dois formatos (`cores` na
+   configuração): cor inteira (`--surface: #fff`) ou canais do Tailwind
+   (`--surface: 255 255 255`). As regras abaixo só leem `--tt-*`; é aqui, e só
+   aqui, que o formato se resolve. O valor depois da vírgula é a rede de
    segurança de quem ainda não declarou o token, não a cor de ninguém. */
-.tt-camada { position: fixed; inset: 0; font: inherit; }
+.tt-camada {
+    position: fixed; inset: 0; font: inherit;
+    --tt-surface: var(--surface-raised, var(--surface, #fff));
+    --tt-overlay: var(--overlay, rgb(0 0 0 / .55));
+    --tt-surface-sunken: var(--surface-sunken, #f3f4f6);
+    --tt-fg-muted: var(--fg-muted, #374151);
+    --tt-fg-subtle: var(--fg-subtle, #4b5563);
+    --tt-fg-on-accent: var(--fg-on-accent, #fff);
+    --tt-fg: var(--fg, #111827);
+    --tt-border-input: var(--border-input, #6b7280);
+    --tt-border: var(--border, #e5e7eb);
+    --tt-accent-hover: var(--accent-hover, #1e40af);
+    --tt-accent-ring: var(--accent-ring, currentColor);
+    --tt-accent: var(--accent, #1d4ed8);
+    --tt-success-subtle: var(--success-subtle, #dcfce7);
+    --tt-success: var(--success, #166534);
+}
+.tt-camada.tt-canais {
+    --tt-surface: rgb(var(--surface-raised, var(--surface, 255 255 255)));
+    --tt-overlay: rgb(var(--overlay, 0 0 0) / .6);
+    --tt-surface-sunken: rgb(var(--surface-sunken, 243 244 246));
+    --tt-fg-muted: rgb(var(--fg-muted, 55 65 81));
+    --tt-fg-subtle: rgb(var(--fg-subtle, 75 85 99));
+    --tt-fg-on-accent: rgb(var(--fg-on-accent, 255 255 255));
+    --tt-fg: rgb(var(--fg, 17 24 39));
+    --tt-border-input: rgb(var(--border-input, 107 114 128));
+    --tt-border: rgb(var(--border, 229 231 235));
+    --tt-accent-hover: rgb(var(--accent-hover, 30 64 175));
+    --tt-accent-ring: rgb(var(--accent-ring, 29 78 216));
+    --tt-accent: rgb(var(--accent, 29 78 216));
+    --tt-success-subtle: rgb(var(--success-subtle, 220 252 231));
+    --tt-success: rgb(var(--success, 22 101 52));
+}
 .tt-fundo { position: absolute; inset: 0; }
-.tt-fundo--veu { background: var(--overlay, rgb(0 0 0 / .55)); }
+.tt-fundo--veu { background: var(--tt-overlay); }
 .tt-holofote {
     position: absolute;
     pointer-events: none;
     border-radius: 8px;
     /* O anel e o véu numa sombra só: anel feito com `ring` também é
        box-shadow, e a sombra inline o apagava. */
-    box-shadow: 0 0 0 2px var(--accent-ring, currentColor), 0 0 0 9999px var(--overlay, rgb(0 0 0 / .55));
+    box-shadow: 0 0 0 2px var(--tt-accent-ring), 0 0 0 9999px var(--tt-overlay);
 }
 @media (prefers-reduced-motion: no-preference) {
     .tt-holofote { transition: all .2s ease; }
@@ -377,9 +414,9 @@ function verTodos() {
     overflow-y: auto;
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid var(--border, #e5e7eb);
-    background: var(--surface-raised, var(--surface, #fff));
-    color: var(--fg, #111827);
+    border: 1px solid var(--tt-border);
+    background: var(--tt-surface);
+    color: var(--tt-fg);
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / .25);
     text-align: left;
 }
@@ -388,23 +425,23 @@ function verTodos() {
     display: flex; width: fit-content; align-items: center; gap: 4px;
     margin: -4px -4px 8px; padding: 4px 6px; border-radius: 6px;
     cursor: grab; user-select: none;
-    color: var(--fg-subtle, #4b5563);
+    color: var(--tt-fg-subtle);
     font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
 }
-.tt-alca:hover { color: var(--fg, #111827); }
+.tt-alca:hover { color: var(--tt-fg); }
 .tt-alca:active { cursor: grabbing; }
 .tt-rotulo {
     margin: 0 0 6px;
-    color: var(--accent, #1d4ed8);
+    color: var(--tt-accent);
     font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
 }
-.tt-titulo { margin: 0 0 6px; font-size: 18px; font-weight: 700; line-height: 1.25; color: var(--fg, #111827); }
-.tt-texto { margin: 0; font-size: 14px; line-height: 1.6; color: var(--fg-muted, #374151); }
+.tt-titulo { margin: 0 0 6px; font-size: 18px; font-weight: 700; line-height: 1.25; color: var(--tt-fg); }
+.tt-texto { margin: 0; font-size: 14px; line-height: 1.6; color: var(--tt-fg-muted); }
 .tt-rodape {
     position: sticky; bottom: -20px;
     display: flex; align-items: center; justify-content: space-between; gap: 8px;
     margin: 16px -20px -20px; padding: 8px 20px 20px;
-    background: var(--surface-raised, var(--surface, #fff));
+    background: var(--tt-surface);
 }
 .tt-rodape--fim { justify-content: flex-end; }
 .tt-grupo { display: flex; align-items: center; gap: 8px; }
@@ -413,17 +450,17 @@ function verTodos() {
     font: inherit; font-size: 14px; font-weight: 600; white-space: nowrap;
     cursor: pointer; border: 1px solid transparent; background: none;
 }
-.tt-botao:focus-visible { outline: 2px solid var(--accent-ring, currentColor); outline-offset: 2px; }
-.tt-botao--leve { padding: 0 4px; color: var(--fg-subtle, #4b5563); }
-.tt-botao--leve:hover { color: var(--fg, #111827); }
-.tt-botao--borda { border-color: var(--border-input, #6b7280); color: var(--fg, #111827); }
-.tt-botao--borda:hover { background: var(--surface-sunken, #f3f4f6); }
+.tt-botao:focus-visible { outline: 2px solid var(--tt-accent-ring); outline-offset: 2px; }
+.tt-botao--leve { padding: 0 4px; color: var(--tt-fg-subtle); }
+.tt-botao--leve:hover { color: var(--tt-fg); }
+.tt-botao--borda { border-color: var(--tt-border-input); color: var(--tt-fg); }
+.tt-botao--borda:hover { background: var(--tt-surface-sunken); }
 /* A primária é da marca OU neutro-escuro, conforme o arquivo de marca
    (CORE §6): o Sócrates aponta `--tutorial-primaria` para o neutro. */
 .tt-botao--primario {
     padding: 0 16px;
-    background: var(--tutorial-primaria, var(--accent, #1d4ed8));
-    color: var(--tutorial-primaria-texto, var(--fg-on-accent, #fff));
+    background: var(--tutorial-primaria, var(--tt-accent));
+    color: var(--tutorial-primaria-texto, var(--tt-fg-on-accent));
 }
-.tt-botao--primario:hover { background: var(--tutorial-primaria-hover, var(--accent-hover, #1e40af)); }
+.tt-botao--primario:hover { background: var(--tutorial-primaria-hover, var(--tt-accent-hover)); }
 </style>

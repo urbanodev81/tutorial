@@ -31,7 +31,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', aoTeclar));
 
 <template>
     <Teleport to="body">
-        <div v-if="show" class="tt-camada tt-resumo" :style="{ zIndex: config.zIndex }">
+        <div v-if="show" class="tt-camada tt-resumo" :class="{ 'tt-canais': config.cores === 'canais' }" :style="{ zIndex: config.zIndex }">
             <div class="tt-fundo tt-fundo--veu tt-fundo--desfoque" aria-hidden="true" @click="emit('close')"></div>
 
             <div ref="caixa" role="dialog" aria-modal="true" aria-labelledby="tour-resumo-titulo" tabindex="-1" class="tt-caixa">
@@ -75,9 +75,9 @@ onBeforeUnmount(() => window.removeEventListener('keydown', aoTeclar));
     box-sizing: border-box;
     width: 100%; max-width: 28rem; max-height: 85vh; overflow-y: auto;
     padding: 24px; border-radius: 8px;
-    border: 1px solid var(--border, #e5e7eb);
-    background: var(--surface-raised, var(--surface, #fff));
-    color: var(--fg, #111827);
+    border: 1px solid var(--tt-border);
+    background: var(--tt-surface);
+    color: var(--tt-fg);
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / .25);
     text-align: left;
 }
@@ -85,14 +85,14 @@ onBeforeUnmount(() => window.removeEventListener('keydown', aoTeclar));
 .tt-selo {
     display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 16px;
     border-radius: 9999px;
-    background: var(--success-subtle, #dcfce7); color: var(--success, #166534);
+    background: var(--tt-success-subtle); color: var(--tt-success);
 }
 .tt-titulo.tt-titulo--grande { font-size: 20px; margin-bottom: 4px; }
 /* Dois seletores: o `.tt-texto { margin: 0 }` do balão pode vir depois no CSS. */
 .tt-texto.tt-espaco { margin-bottom: 16px; }
 .tt-lista { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 6px; }
-.tt-lista li { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: var(--fg, #111827); }
-.tt-lista svg { flex-shrink: 0; margin-top: 2px; color: var(--success, #166534); }
+.tt-lista li { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: var(--tt-fg); }
+.tt-lista svg { flex-shrink: 0; margin-top: 2px; color: var(--tt-success); }
 .tt-pilha { display: flex; flex-direction: column; gap: 8px; }
 .tt-pilha .tt-botao { width: 100%; }
 </style>

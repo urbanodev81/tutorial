@@ -24,6 +24,9 @@ com as três cópias.
   `--accent-ring`, `--fg-on-accent`, `--overlay`, `--success`,
   `--success-subtle` — a lista do `CORE.md` §1). Projeto sem essas variáveis
   declara antes de instalar.
+  **Formato:** cor inteira (`--surface: #FFFFFF`) é o padrão. Projeto que
+  declara em canais para o Tailwind (`--surface: 255 255 255`, como Duo, Girls
+  e WJ) passa `cores: 'canais'` — sem isso o balão sai sem fundo.
   A primária segue a marca (CORE §6): quem usa neutro-escuro aponta
   `--tutorial-primaria`, `--tutorial-primaria-hover` e
   `--tutorial-primaria-texto`.
@@ -32,7 +35,7 @@ com as três cópias.
 
 ```jsonc
 // package.json do sistema — versão exata, nunca branch
-"@urbanodev/tutorial": "github:urbanodev81/tutorial#v0.1.3"
+"@urbanodev/tutorial": "github:urbanodev81/tutorial#v0.2.0"
 ```
 
 Repositório **privado**: o lock aponta `git+ssh`. No CI, um passo antes do
@@ -65,6 +68,7 @@ configurarTutorial({
     superficie: useSuperficieExclusiva(),
     zIndex: 100,                       // a régua é do projeto (CORE §10)
     modo: 'aprender',                  // ou () => 'auxiliar' por usuário
+    cores: 'inteira',                  // ou 'canais' (--x: 255 255 255)
     aoVerTodos: () => router.visit(route('tours.index')),   // opcional
 });
 ```

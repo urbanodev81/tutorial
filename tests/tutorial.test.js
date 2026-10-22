@@ -25,6 +25,7 @@ beforeEach(() => {
         modo: () => modo.value,
         superficie: null,
         aoVerTodos: null,
+        cores: 'inteira',
     });
     esquecerVisto();
     document.body.innerHTML = '<nav data-tour="menu" style="width:100px;height:40px">menu</nav>';
@@ -167,5 +168,22 @@ describe('balão', () => {
         await new Promise((r) => setTimeout(r, 0));
         expect(document.querySelector('[data-tutorial="holofote"]')).toBeNull();
         configurarTutorial({ passos: PASSOS });
+    });
+});
+
+describe('formato das cores', () => {
+    it('no padrão, a camada lê a variável de tema como cor inteira', async () => {
+        mount(TourOverlay, { attachTo: document.body });
+        useTour().start('inicio');
+        await nextTick();
+        expect(document.querySelector('.tt-camada').classList.contains('tt-canais')).toBe(false);
+    });
+
+    it('com cores: canais, a camada ganha a classe que embrulha em rgb()', async () => {
+        configurarTutorial({ cores: 'canais' });
+        mount(TourOverlay, { attachTo: document.body });
+        useTour().start('inicio');
+        await nextTick();
+        expect(document.querySelector('.tt-camada').classList.contains('tt-canais')).toBe(true);
     });
 });
