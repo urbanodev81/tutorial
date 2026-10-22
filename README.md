@@ -32,7 +32,7 @@ com as três cópias.
 
 ```jsonc
 // package.json do sistema — versão exata, nunca branch
-"@urbanodev/tutorial": "github:urbanodev81/tutorial#v0.1.2"
+"@urbanodev/tutorial": "github:urbanodev81/tutorial#v0.1.3"
 ```
 
 O pacote vai como fonte (`.vue`), então o Vite não pode pré-empacotá-lo:

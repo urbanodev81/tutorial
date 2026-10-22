@@ -14,6 +14,8 @@
 - Chave de "visto", z-index, textos da interface e "Ver todos os tutoriais"
   por configuração.
 - `tutorial-conferir`: acusa passo apontando para `data-tour` que não existe.
+  Lê também `:data-tour` dinâmico (texto entre aspas simples) e, em template
+  (`` `menu-${chave}` ``), confere pelo prefixo e diz quais.
 
 ### Corrigido
 - O holofote do passo anterior ficava até ~1s no alvo errado enquanto o
